@@ -1,0 +1,14 @@
+{
+  "name": "umptieth",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "3.4.7",
+    "ejs": "~0.8.5",
+    "mocha": "~1.16.2",
+    "should": "~2.1.1"
+  }
+}
