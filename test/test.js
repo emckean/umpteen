@@ -28,6 +28,10 @@ describe('checking', function(){
 	    it('should return an array', function(){
 	      should.deepEqual([3,0,0,0,3], umpteen.arrayify(numberForArray));
 		})
+		var testNumber = 33;
+	    it('while loop should work', function(){
+	      should.equal(3, umpteen.chugNumbers(testNumber));
+	  	})
 	})
 })
 
