@@ -7,3 +7,7 @@ to-do:
 * strip leading and trailing spaces
 * handle negative numbers?
 * deal with zero case
+
+Things to remember:
+-----------------------
++ numeral.js
