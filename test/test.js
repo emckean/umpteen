@@ -58,8 +58,13 @@ describe('checking', function(){
 	  	var number5678 = 5678;
 	  	it ('should return three-digit slice of array', function(){
 	  		console.log(umpteen.sliceArray(number5678));
-	  		should.deepEqual([8,7,6,5], umpteen.sliceArray(number5678))
-	  	})		  	
+	  		should.deepEqual(["five", "six", "seventy-", "eight"], umpteen.sliceArray(number5678))
+	  	})		
+	  	var number56789 = 56789;
+	  	it ('should return three-digit slice of array', function(){
+	  		console.log(umpteen.sliceArray(number56789));
+	  		should.deepEqual(["five", "six", "seventy-", "eight", "nine"], umpteen.sliceArray(number56789))
+	  	})		  	  	
 	  	var reallyLongNumber = 10000000000000;
 	  	it('should reject too-long numbers', function(){
 	  	  should.equal("Sorry, nine trillion is as high as we go!", umpteen.checkLength(reallyLongNumber));

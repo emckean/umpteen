@@ -59,33 +59,30 @@ var oneToNineteen = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seve
         }
 
     var sliceArray = function(number) {
-            var spelledNums = [];
-            var tempNums = [];
-            var arrayOfNums = arrayify(number);
-            // var backwardsArrayOfNums = arrayOfNums.reverse();
-            // var length = backwardsArrayOfNums.length;
-             
-
-    //okay, next bit is to check for undefined for tempNums[i], maybe ternary operator here? 
-          while (arrayOfNums.length > 0) {
-              for(var i=0; i<3; i++)  {
-                tempNums[i] = arrayOfNums.pop();
-            }
-
-              if ((tempNums[1] !== undefined) && (tempNums[1] === 1)){ 
-                    var teenNum = tempNums[1].toString() + tempNums[0].toString();
-                    spelledNums.push(underTwenty(+teenNum));
+        var spelledNums = [];
+        var tempNums = [];
+        var arrayOfNums = arrayify(number);
+        length = arrayOfNums.length;
+        while (length > 0) {
+            tempNums.push(arrayOfNums.splice(-3, 3));
+            length = (length - 3);
+//okay got array of arrays w/3 nums in each, wasn't expecting it but that should work! start here next
+        }
+        return tempNums;
+            //   if ((tempNums[1] !== undefined) && (tempNums[1] === 1)){ 
+            //         var teenNum = tempNums[1].toString() + tempNums[0].toString();
+            //         spelledNums.push(underTwenty(+teenNum));
                     
-              }
-             else {
-                spelledNums.push(underTwenty(tempNums[0]));
-                spelledNums.push(underHundred(tempNums[1]));
-             } 
-             if (tempNums[2] !== undefined) {
-                spelledNums.push(singleDigit(tempNums[2]));
-             }
-            }
-            return spelledNums.reverse();
+            //   }
+            //  else {
+            //     spelledNums.push(underTwenty(tempNums[0]));
+            //     spelledNums.push(underHundred(tempNums[1]));
+            //  } 
+            //  if (tempNums[2] !== undefined) {
+            //     spelledNums.push(singleDigit(tempNums[2]));
+            //  }
+            // }
+            // return spelledNums.reverse();
 
         }
 
