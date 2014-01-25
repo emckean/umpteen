@@ -1,6 +1,7 @@
-var oneToNineteen = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'],
+var oneToNineteen = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'],
     tens = ['', 'ten', 'twenty-', 'thirty-', 'fourty-', 'fifty-', 'sixty-', 'seventy-', 'eighty-', 'ninety-'];
     ones = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+    powers = [' ', 'thousand', 'million', 'billion', 'trillion', 'quadrillion', 'quintillion', 'sextillion', 'septillion'];
 
         var noDecimals = function(number){
             return Math.floor(number);
@@ -66,23 +67,30 @@ var oneToNineteen = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seve
         while (length > 0) {
             tempNums.push(arrayOfNums.splice(-3, 3));
             length = (length - 3);
-//okay got array of arrays w/3 nums in each, wasn't expecting it but that should work! start here next
         }
-        return tempNums;
-            //   if ((tempNums[1] !== undefined) && (tempNums[1] === 1)){ 
-            //         var teenNum = tempNums[1].toString() + tempNums[0].toString();
-            //         spelledNums.push(underTwenty(+teenNum));
+        tempNumlength = tempNums.length;        
+        for(var i=0; i<tempNumlength; i++) {
+            var miniArray = tempNums[i].reverse();
+            if (((miniArray[1]) !== undefined) && (miniArray[1] === 1)){ 
+                    var teenNum = (miniArray[1]).toString() + (miniArray[i][0]).toString();
+                    spelledNums.push(underTwenty(+teenNum));
                     
-            //   }
-            //  else {
-            //     spelledNums.push(underTwenty(tempNums[0]));
-            //     spelledNums.push(underHundred(tempNums[1]));
-            //  } 
-            //  if (tempNums[2] !== undefined) {
-            //     spelledNums.push(singleDigit(tempNums[2]));
-            //  }
-            // }
-            // return spelledNums.reverse();
+              }
+             else {
+                if ((miniArray[0]) !== undefined){
+                    spelledNums.push(underTwenty(miniArray[0]) + ' ' + powers[i])
+                };
+               if ((miniArray[1]) !== undefined){
+                    spelledNums.push(underHundred(miniArray[1]))
+                };
+             } 
+             if ((miniArray[2]) !== undefined){
+                spelledNums.push(singleDigit(miniArray[2]) + ' hundred')
+            };
+
+        }
+        return spelledNums.reverse();
+// ok so now figure out how to put in 'ands'
 
         }
 
