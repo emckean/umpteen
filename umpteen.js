@@ -59,7 +59,7 @@ var oneToNineteen = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 
 
         }
 
-    var sliceArray = function(number) {
+    var spellItOut = function(number) {
         var spelledNums = [];
         var tempNums = [];
         var arrayOfNums = arrayify(number);
@@ -103,7 +103,7 @@ module.exports = {
     checkLength: checkLength,
     singleDigit: singleDigit,
     underHundred: underHundred,
-    sliceArray: sliceArray
+    spellItOut: spellItOut
 }
 // exports.noDecimals = function(number){
 //     return Math.floor(number);
