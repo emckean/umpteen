@@ -1,7 +1,7 @@
 var oneToNineteen = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'],
     tens = ['', 'ten', 'twenty-', 'thirty-', 'fourty-', 'fifty-', 'sixty-', 'seventy-', 'eighty-', 'ninety-'];
     ones = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
-    powers = [' ', 'thousand', 'million', 'billion', 'trillion', 'quadrillion', 'quintillion', 'sextillion', 'septillion'];
+    powers = ['', ' thousand', ' million', ' billion', ' trillion', ' quadrillion', ' quintillion', ' sextillion', ' septillion'];
 
         var noDecimals = function(number){
             return Math.floor(number);
@@ -78,7 +78,7 @@ var oneToNineteen = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 
               }
              else {
                 if ((miniArray[0]) !== undefined){
-                    spelledNums.push(underTwenty(miniArray[0]) + ' ' + powers[i])
+                    spelledNums.push(underTwenty(miniArray[0]) + powers[i])
                 };
                if ((miniArray[1]) !== undefined){
                     spelledNums.push(underHundred(miniArray[1]))
@@ -90,9 +90,22 @@ var oneToNineteen = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 
 
         }
         return spelledNums.reverse();
+    }
 // ok so now figure out how to put in 'ands'
-
+    var andify = function(number) {
+// probably want to expect an array here, no?         
+        var spelledNumber = [];
+        spelledNumber = spellItOut(number);
+        if (spelledNumber[1] === ''){
+            spelledNumber[1] = " and ";
+            return spelledNumber;
         }
+        else {
+            return spelledNumber;
+        }
+// and now the fun of andifying long numbers! maybe make it part of the spell it out function?        
+    }
+
 
 module.exports = {
     arrayify : arrayify,
@@ -103,7 +116,8 @@ module.exports = {
     checkLength: checkLength,
     singleDigit: singleDigit,
     underHundred: underHundred,
-    spellItOut: spellItOut
+    spellItOut: spellItOut,
+    andify: andify
 }
 // exports.noDecimals = function(number){
 //     return Math.floor(number);
