@@ -53,37 +53,42 @@ describe('checking', function(){
 	  	var number123 = 123;
 	  	it ('should spell out a three-digit number', function(){
 	  		console.log(umpteen.spellItOut(number123));
-	  		should.deepEqual(["one hundred", "twenty-", "three"], umpteen.spellItOut(number123))
+	  		should.deepEqual(["one hundred and", "twenty-", "three"], umpteen.spellItOut(number123))
 	  	})	  	
 	  	var number5678 = 5678;
 	  	it ('should spell out a four-digit number', function(){
 	  		console.log(umpteen.spellItOut(number5678));
-	  		should.deepEqual(["five thousand", "six hundred", "seventy-", "eight"], umpteen.spellItOut(number5678))
+	  		should.deepEqual(["five thousand", "six hundred and", "seventy-", "eight"], umpteen.spellItOut(number5678))
 	  	})		
 	  	var number56789 = 56789;
 	  	it ('should spell out a five-digit number', function(){
 	  		console.log(umpteen.spellItOut(number56789));
-	  		should.deepEqual(["fifty-", "six thousand", "seven hundred", "eighty-", "nine"], umpteen.spellItOut(number56789))
+	  		should.deepEqual(["fifty-", "six thousand", "seven hundred and", "eighty-", "nine"], umpteen.spellItOut(number56789))
 	  	})		
 	  	var number456789 = 456789;
 	  	it ('should spell out a six digit number', function(){
 	  		console.log(umpteen.spellItOut(number456789));
-	  		should.deepEqual(["four hundred", "fifty-", "six thousand", "seven hundred", "eighty-", "nine"], umpteen.spellItOut(number456789))
+	  		should.deepEqual(["four hundred and", "fifty-", "six thousand", "seven hundred and", "eighty-", "nine"], umpteen.spellItOut(number456789))
 	  	})	  	
 	  	var number3456789 = 3456789;
 	  	it ('should spell out a seven-digit number ', function(){
 	  		console.log(umpteen.spellItOut(number3456789));
-	  		should.deepEqual(["three million", "four hundred", "fifty-", "six thousand", "seven hundred", "eighty-", "nine"], umpteen.spellItOut(number3456789))
+	  		should.deepEqual(["three million", "four hundred and", "fifty-", "six thousand", "seven hundred and", "eighty-", "nine"], umpteen.spellItOut(number3456789))
 	  	})	 
-	  	var number102 = 102;
-	  	it ('should include an AND when there is a zero in the tens place', function(){
-	  		console.log(umpteen.spellItOut(number102));
-	  		should.deepEqual(["one hundred", " and ", "two"], umpteen.andify(number102))
-	  	}) 	
-	  	var number508102 = 508102;
-	  	it ('should include an AND when there is a zero in the tens place', function(){
-	  		console.log(umpteen.spellItOut(number508102));
-	  		should.deepEqual(["five hundred", " and ", "eight thousand", "one hundred", " and ", "two"], umpteen.andify(number508102))
+	  	// var number102 = 102;
+	  	// it ('should include an AND when there is a zero in the tens place', function(){
+	  	// 	console.log(umpteen.spellItOut(number102));
+	  	// 	should.deepEqual(["one hundred", " and ", "two"], umpteen.andify(number102))
+	  	// }) 	
+	  	// var number508102 = 508102;
+	  	// it ('should include an AND when there is a zero in the tens place', function(){
+	  	// 	console.log(umpteen.spellItOut(number508102));
+	  	// 	should.deepEqual(["five hundred", " and ", "eight thousand", "one hundred", " and ", "two"], umpteen.andify(number508102))
+	  	// }) 	
+	  	var number204888270 = 204888270;
+	  	it ('should spell out a number with a final zero', function(){
+	  		console.log(umpteen.spellItOut(number204888270));
+	  		should.equal("two hundred and four million, eight hundred and eighty-eight thousand, two hundred and seventy", umpteen.phrasify(number204888270))
 	  	}) 	
 	  	var reallyLongNumber = 10000000000000;
 	  	it('should reject too-long numbers', function(){

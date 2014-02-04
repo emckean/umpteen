@@ -1,7 +1,7 @@
 var oneToNineteen = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'],
     tens = ['', 'ten', 'twenty-', 'thirty-', 'fourty-', 'fifty-', 'sixty-', 'seventy-', 'eighty-', 'ninety-'];
     ones = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
-    powers = ['', ' thousand', ' million', ' billion', ' trillion', ' quadrillion', ' quintillion', ' sextillion', ' septillion'];
+    powers = ['', ' thousand,', ' million,', ' billion,', ' trillion,', ' quadrillion,', ' quintillion,', ' sextillion,', ' septillion,'];
 
         var noDecimals = function(number){
             return Math.floor(number);
@@ -85,25 +85,20 @@ var oneToNineteen = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 
                 };
              } 
              if ((miniArray[2]) !== undefined){
-                spelledNums.push(singleDigit(miniArray[2]) + ' hundred')
+                spelledNums.push(singleDigit(miniArray[2]) + ' hundred and')
             };
-
         }
         return spelledNums.reverse();
     }
-// ok so now figure out how to put in 'ands'
-    var andify = function(number) {
-// probably want to expect an array here, no?         
-        var spelledNumber = [];
-        spelledNumber = spellItOut(number);
-        if (spelledNumber[1] === ''){
-            spelledNumber[1] = " and ";
-            return spelledNumber;
-        }
-        else {
-            return spelledNumber;
-        }
-// and now the fun of andifying long numbers! maybe make it part of the spell it out function?        
+
+    var phrasify = function(number) {
+        var phrasifiedNums = spellItOut(number);    
+        
+        numPhrase = phrasifiedNums.join(" ");
+        noSpaces = numPhrase.replace(/  /, " ");
+        fixHyphens = noSpaces.replace(/- /, "-");
+        finalPhrase = fixHyphens.replace(/- $/, "");
+        return finalPhrase;
     }
 
 
@@ -117,7 +112,7 @@ module.exports = {
     singleDigit: singleDigit,
     underHundred: underHundred,
     spellItOut: spellItOut,
-    andify: andify
+    phrasify: phrasify
 }
 // exports.noDecimals = function(number){
 //     return Math.floor(number);
