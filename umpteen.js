@@ -101,18 +101,18 @@ var phrasify = function(number) {
     return finalPhrase;
 }
 
-
-module.exports = {
-    arrayify : arrayify,
-    chugNumbers : chugNumbers,
-    underTwenty: underTwenty,
-    noDecimals: noDecimals,
-    onlyDigits: onlyDigits,
-    checkLength: checkLength,
-    singleDigit: singleDigit,
-    underHundred: underHundred,
-    spellItOut: spellItOut,
-    phrasify: phrasify
+if (typeof module !== 'undefined') {
+    module.exports = {
+        arrayify : arrayify,
+        chugNumbers : chugNumbers,
+        underTwenty: underTwenty,
+        noDecimals: noDecimals,
+        onlyDigits: onlyDigits,
+        checkLength: checkLength,
+        singleDigit: singleDigit,
+        underHundred: underHundred,
+        spellItOut: spellItOut,
+        phrasify: phrasify
+    }
 }
-
 

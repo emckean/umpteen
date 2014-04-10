@@ -1,9 +1,23 @@
 {
-  "name": "umptieth",
+  "name": "umpteen",
+  "description": "A helper for spelling out numbers in words.",
   "version": "0.0.1",
-  "private": true,
+  "homepage": "https://github.com/emckean/umpteen",
+  "keywords": ["spell", "numbers to words", "cardinal numbers"],
+  "author": "Erin McKean <erin@logocracy.com>",
+  "main": "umpteen.js",
+  "bugs": {
+    "mail": "erin@logocracy.com",
+    "url": "https://github.com/emckean/umpteen/issues"
+  },
+    "repository": {
+    "type": "git",
+    "url": "https://github.com/emckean/umpteen"
+  },
+    "licenses": [{
+    "type": "MIT"
+  }],
   "scripts": {
-    "start": "node app.js",
     "test": "node_modules/.bin/mocha -w"
   },
   "dependencies": {

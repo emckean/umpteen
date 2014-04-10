@@ -16,9 +16,13 @@ Using Umpteen
 ===================
 Testing
 -------
-Run tests with mocha in the /test directory. 
+Run tests with mocha. Tests are in the /test directory. 
 ```
 mocha /test/test.js
+```
+or
+```
+npm test
 ```
 
 Thanks and acknowledgements
