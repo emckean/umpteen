@@ -19,6 +19,7 @@ Testing
 Run tests with mocha in the /test directory. 
 ```
 mocha /test/test.js
+```
 
 Thanks and acknowledgements
 ===========================
