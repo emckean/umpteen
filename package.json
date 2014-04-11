@@ -3,26 +3,31 @@
   "description": "A helper for spelling out numbers in words.",
   "version": "0.0.1",
   "homepage": "https://github.com/emckean/umpteen",
-  "keywords": ["spell", "numbers to words", "cardinal numbers"],
+  "keywords": [
+    "spell",
+    "numbers to words",
+    "cardinal numbers"
+  ],
   "author": "Erin McKean <erin@logocracy.com>",
   "main": "umpteen.js",
   "bugs": {
     "mail": "erin@logocracy.com",
     "url": "https://github.com/emckean/umpteen/issues"
   },
-    "repository": {
+  "repository": {
     "type": "git",
     "url": "https://github.com/emckean/umpteen"
   },
-    "licenses": [{
-    "type": "MIT"
-  }],
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ],
   "scripts": {
-    "test": "node_modules/.bin/mocha -w"
+    "test": "node_modules/.bin/mocha"
   },
-  "dependencies": {
-    "express": "3.4.7",
-    "ejs": "~0.8.5",
+  "dependencies": {},
+  "devDependencies": {
     "mocha": "~1.16.2",
     "should": "~2.1.1"
   }
