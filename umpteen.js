@@ -73,7 +73,7 @@ var chugNumbers = function(number) {
         for(var i=0; i<tempNumlength; i++) {
             var miniArray = tempNums[i].reverse();
             if (((miniArray[1]) !== undefined) && (miniArray[1] === 1)){ 
-                    var teenNum = (miniArray[1]).toString() + (miniArray[i][0]).toString();
+                    var teenNum = (miniArray[1]).toString() + (miniArray[0]).toString();
                     spelledNums.push(underTwenty(+teenNum));
                     
               }
@@ -89,6 +89,8 @@ var chugNumbers = function(number) {
                 spelledNums.push(singleDigit(miniArray[2]) + ' hundred and')
             };
         }
+        // var hyphens = /-  ?/;
+        // return spelledNums.reverse().join(" ").replace(hyphens, "-", "gi");
         return spelledNums.reverse();
     }
 

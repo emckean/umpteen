@@ -50,6 +50,11 @@ describe('checking', function(){
 	  		console.log(umpteen.chugNumbers(number33));
 	  		should.deepEqual(['three', 'thirty-'], umpteen.chugNumbers(number33))
 	  	})
+	  	var number13 = 13;
+	  	it ('should spell out a two-digit teen number', function(){
+	  		console.log(umpteen.spellItOut(number13));
+	  		should.deepEqual(["thirteen"], umpteen.spellItOut(number13))
+	  	})
 	  	var number123 = 123;
 	  	it ('should spell out a three-digit number', function(){
 	  		console.log(umpteen.spellItOut(number123));
