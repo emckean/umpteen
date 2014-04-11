@@ -29,6 +29,8 @@ Thanks and acknowledgements
 ===========================
 Umpteen was inspired by Landon Curt Noll's print-the-numbers perl script, which is way better and fuller-featured than this module. You should check it out: http://www.isthe.com/chongo/tech/math/number/number
 
+If you don't like this implementation, or you need to spell out numbers in French or Danish, try this module: https://www.npmjs.org/package/spell-it
+
 License
 ========
 Umpteen is made available under the MIT software license (http://opensource.org/licenses/MIT)
