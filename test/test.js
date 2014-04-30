@@ -115,7 +115,7 @@ describe('checking', function(){
 	  	// })
 	  	var reallyLongDecimalNumber = 1.00000000000000000000000;
 	  	it('should reject too-long numbers', function(){
-	  	  should.equal("Sorry, nine septillion is as high as we go!", umpteen.checkLength(reallyLongDecimalNumber));
+	  	  should.equal("1", umpteen.checkLength(reallyLongDecimalNumber));
 	  	})
 	})
 })
