@@ -103,9 +103,19 @@ describe('checking', function(){
 	  	it ('should spell out a number with a final zero', function(){
 	  		should.equal("two hundred and four million, eight hundred and eighty-eight thousand, two hundred and seventy", umpteen.phrasify(numberArray204888270))
 	  	})
-	  	var reallyLongNumber = 10000000000000;
+	  	var reallyLongNumber = 10000000000000000000000;
 	  	it('should reject too-long numbers', function(){
-	  	  should.equal("Sorry, nine trillion is as high as we go!", umpteen.checkLength(reallyLongNumber));
+		  	var checkedNumber = umpteen.checkLength(reallyLongNumber);
+		  	checkedNumber.should.be.an.instanceof(Error);
+	  	})
+	  	// var reallyTooLongNumber = 100000000000000000000000;
+	  	// it('should reject too-long numbers', function(){
+		  // 	var checkedNumber = umpteen.checkLength(reallyLongNumber);
+		  // 	checkedNumber.should.be.an.instanceof(Error);
+	  	// })
+	  	var reallyLongDecimalNumber = 1.00000000000000000000000;
+	  	it('should reject too-long numbers', function(){
+	  	  should.equal("Sorry, nine septillion is as high as we go!", umpteen.checkLength(reallyLongDecimalNumber));
 	  	})
 	})
 })

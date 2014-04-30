@@ -24,12 +24,36 @@ or
 ```
 npm test
 ```
+Command-Line?
+-------------
+To test this module on the command line, try this: 
+1. in a new directory, 
+```
+npm install umpteen 
+```
+2. Create a SpellItOut.js file with these lines: 
+```
+#!/usr/bin/env node
+
+var spellIt = require('umpteen');
+
+var input = parseInt(process.argv[2], 10);
+console.log(spellIt.spellItOut(input));
+```
+3. from the command line, type: 
+```
+node SpellItOut 77
+```
+4. You should see this returned:
+```
+"seventy-seven"
+```
 
 Thanks and acknowledgements
 ===========================
 Umpteen was inspired by Landon Curt Noll's print-the-numbers perl script, which is way better and fuller-featured than this module. You should check it out: http://www.isthe.com/chongo/tech/math/number/number
 
-If you don't like this implementation, or you need to spell out numbers in French or Danish, try this module: https://www.npmjs.org/package/spell-it
+If you don't like this implementation, or you need to spell out numbers in French or Danish, try this module by jmosbech (https://github.com/jmosbech): https://www.npmjs.org/package/spell-it
 
 License
 ========

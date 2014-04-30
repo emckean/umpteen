@@ -2,7 +2,7 @@
 var oneToNineteen = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'],
     tens = ['', 'ten', 'twenty-', 'thirty-', 'forty-', 'fifty-', 'sixty-', 'seventy-', 'eighty-', 'ninety-'];
     ones = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
-    powers = ['', ' thousand,', ' million,', ' billion,', ' trillion,', ' quadrillion,', ' quintillion,', ' sextillion,', ' septillion,'];
+    powers = ['', ' thousand,', ' million,', ' billion,', ' trillion,', ' quadrillion,', ' quintillion,'];
 
 // we don't mess with no decimals
 var noDecimals = function(number){
@@ -38,9 +38,14 @@ var arrayify = function(number) {
 
 // redo this for septillion
 var checkLength = function(number) {
-    var myNumArray = arrayify(number);
-    if (myNumArray.length > 13) {
-        return("Sorry, nine trillion is as high as we go!");
+    if (number >= 1e+21) { 
+    return new Error("Sorry, number too big.");   
+    // var myNumArray = arrayify(number);
+    // console.log("hey, here's the array " + myNumArray);
+    // if (myNumArray.length > 25) {
+    // return("Sorry, one hundred quintillion is as high as we go!");
+    } else {
+        return(number);
     }
 }
 
@@ -61,6 +66,7 @@ var chugNumbers = function(number) {
 }
 
     var spellItOut = function(number) {
+
         var spelledNums = [];
         var tempNums = [];
         var arrayOfNums = arrayify(number);
@@ -101,6 +107,11 @@ var phrasify = function(number) {
     fixHyphens = noSpaces.replace(/- /, "-");
     finalPhrase = fixHyphens.replace(/- $/, "");
     return finalPhrase;
+}
+
+var finalFunction = function(number) {
+    var myNumber = checkLength(number);
+    
 }
 
 if (typeof module !== 'undefined') {
