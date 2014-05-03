@@ -108,11 +108,11 @@ describe('checking', function(){
 		  	var checkedNumber = umpteen.checkLength(reallyLongNumber);
 		  	checkedNumber.should.be.an.instanceof(Error);
 	  	})
-	  	// var reallyTooLongNumber = 100000000000000000000000;
-	  	// it('should reject too-long numbers', function(){
-		  // 	var checkedNumber = umpteen.checkLength(reallyLongNumber);
-		  // 	checkedNumber.should.be.an.instanceof(Error);
-	  	// })
+	  	var reallyTooLongNumber = 100000000000000000000000;
+	  	it('should reject too-long numbers', function(){
+		  	var checkedNumber = umpteen.checkLength(reallyLongNumber);
+		  	checkedNumber.should.be.an.instanceof(Error);
+	  	})
 	  	var reallyLongDecimalNumber = 1.00000000000000000000000;
 	  	it('should reject too-long numbers', function(){
 	  	  should.equal("1", umpteen.checkLength(reallyLongDecimalNumber));

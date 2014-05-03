@@ -33,3 +33,14 @@ Checklist:
 * for random testing, RAND a number between 0 and one trillion and log output, just for eyeball verify
 * test in spellitout that number is an array, then do the joinyreplacy bits
 
+Flow
+---------------------------
+√ check to make sure all digits
+√ then delete decimals
+√ then check length
+-- fix plain zero with special case
+-- then create array
+-- create spelled version
+-- remove empty array elements
+-- fix "one thousand, zero hundred and"
+-- figure out Object.prototype.toString

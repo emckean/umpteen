@@ -24,6 +24,11 @@ or
 ```
 npm test
 ```
+A Note on Formatting
+--------------------
+Umpteen handles numbers written in US-style notation: 6,543.21. (Except that it throws away everything after the decimal point.)
+If you'd like to use Euro-style numbers, you can fork this & look for the comments, I've marked where the delimiters are shown. Please feel free to send me a pull request if you can figure out how to handle both instances nicely. 
+
 Command-Line?
 -------------
 To test this module on the command line, try this: 
@@ -37,7 +42,7 @@ npm install umpteen
 
 var spellIt = require('umpteen');
 
-var input = parseInt(process.argv[2], 10);
+var input = process.argv[2];
 console.log(spellIt.spellItOut(input));
 ```
 3. from the command line, type: 
