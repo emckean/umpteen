@@ -36,19 +36,14 @@ describe('checking', function(){
 	    it('should return an array', function(){
 	      should.deepEqual([3,0,0,0,3], umpteen.arrayify(numberForArray));
 		})
-		var number19 = 19;
-	    it('checking chugNumbers', function(){
-	    	console.log(umpteen.chugNumbers(number19));
-	      should.equal("nineteen", umpteen.chugNumbers(number19));
-	  	})
 	  	var testNumber19 = 19;
 	  	it ('should return teen numbers', function(){
 	  		should.equal("nineteen", umpteen.underTwenty(testNumber19))
 	  	})
 	  	var number33 = 33;
 	  	it ('should return thirty-three from 33', function(){
-	  		console.log(umpteen.chugNumbers(number33));
-	  		should.deepEqual(['three', 'thirty-'], umpteen.chugNumbers(number33))
+	  		console.log(umpteen.spellItOut(number33));
+	  		should.deepEqual(['three', 'thirty-'], umpteen.spellItOut(number33))
 	  	})
 	  	var number13 = 13;
 	  	it ('should spell out a two-digit teen number', function(){

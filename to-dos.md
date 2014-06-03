@@ -38,9 +38,16 @@ Flow
 √ check to make sure all digits
 √ then delete decimals
 √ then check length
+-- what about a case statement that checks the tempnum[i]?
 -- fix plain zero with special case
 -- then create array
 -- create spelled version
 -- remove empty array elements
 -- fix "one thousand, zero hundred and"
 -- figure out Object.prototype.toString
+
+Possibilities
+------------------------------
+ nested.name.middle || '(none)', for handling zero?
+ http://designpepper.com/blog/drips/storing-metadata-on-arrays-in-javascript.html
+ can any of the functions be iifes? e.g. push array ?
