@@ -1,12 +1,15 @@
 to-do:
 =======================
 * check for too-long numbers
+* test that shorter numbers are not instances of error 
+* figure out the >17 digit thing
 * use https://www.npmjs.org/package/big-integer to deal with numbers >1e+20 (toJSNumber())
 * check for >1 decimal point
 * check for non-digit, non-comma, non-decimal point characters
 * strip leading and trailing spaces
 * handle negative numbers?
 * deal with zero case
+* make tests run constantly
 
 Things to remember:
 -----------------------
@@ -51,3 +54,18 @@ Possibilities
  nested.name.middle || '(none)', for handling zero?
  http://designpepper.com/blog/drips/storing-metadata-on-arrays-in-javascript.html
  can any of the functions be iifes? e.g. push array ?
+ handle decimals? 
+ var saveDecimals = function(number){
+    var stringNum = number.toString();
+    // console.log("here's the stringNum: " + stringNum);
+    //decimal marker here is the ".", if you want it to be the comma, switch it here
+    //we're throwing away the decimal here but I'm saving this to handle it in some future version
+    //but remember to check that everything after the decimal point is also a number
+    var lastTwo = /[\.]..*?$/;
+    var findDecimal = stringNum.match(lastTwo);
+    if (findDecimal != undefined) {
+        var theThrownAwayDecimal = findDecimal[0];
+    }
+    var noDecimal = stringNum.replace(lastTwo,"");
+    return([noDecimal, fin]);
+}

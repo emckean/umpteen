@@ -1,31 +1,22 @@
 //here's the written-out numbers
-var oneToNineteen = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'],
-    tens = ['', 'ten', 'twenty-', 'thirty-', 'forty-', 'fifty-', 'sixty-', 'seventy-', 'eighty-', 'ninety-'];
-    ones = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
-    powers = ['', 'hundred', ' thousand,', ' million,', ' billion,', ' trillion,', ' quadrillion,', ' quintillion,'];
+var oneToNineteen = [' ', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'],
+    tens = [' ', 'ten', 'twenty-', 'thirty-', 'forty-', 'fifty-', 'sixty-', 'seventy-', 'eighty-', 'ninety-'];
+    ones = [' ', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+    powers = ['', 'hundred', ' thousand,', ' million,', ' billion,', ' trillion,', ' quadrillion,', ' quintillion,', ' sextillion,'];
 
 // we don't mess with no decimals
 var noDecimals = function(number){
-    return Math.floor(number);
+    if (Math.floor(number) === 0) { 
+        return new Error("Sorry, number too small.");   
+    } else {
+        return Math.floor(number);
+    }
 }
 
-// only digits 1-9 please
+// only digits 0-9 please
 var onlyDigits = function(number){    
-    var stringNum = number.toString();
-    console.log("here's the stringNum: " + stringNum);
-    //decimal marker here is the ".", if you want it to be the comma, switch it here
-    //we're throwing away the decimal here but I'm saving this to handle it in some future version
-    //but remember to check that everything after the decimal point is also a number
-    var lastTwo = /[\.]..*?$/;
-    var findDecimal = stringNum.match(lastTwo);
-    console.log(findDecimal);
-    if (findDecimal != undefined) {
-        var theThrownAwayDecimal = findDecimal[0];
-    }
-    var noDecimal = stringNum.replace(lastTwo,"");
-    console.log(noDecimal);
     var exp = /[^\d]/ig;
-    var justDigits = noDecimal.replace(exp,"");
+    var justDigits = number.replace(exp,"");
     return justDigits;
 }
 
@@ -40,12 +31,7 @@ var singleDigit = function(number) {
     return ones[number];
 }       
 
-// var checkZero = function(number) {
-//     if (number === 0) {
-//         return "zero";
-//     }
-// }
-
+//turn number into an array
 var arrayify = function(number) {
     var stringNum = number.toString();
     var arrayOfNums = stringNum.split("");
@@ -54,14 +40,10 @@ var arrayify = function(number) {
     return arrayOfNums;
 }
 
-// redo this for septillion
+// sextillion is as high as we go
 var checkLength = function(number) {
-    if (number >= 1e+21) { 
-    return new Error("Sorry, number too big.");   
-    // var myNumArray = arrayify(number);
-    // console.log("hey, here's the array " + myNumArray);
-    // if (myNumArray.length > 25) {
-    // return("Sorry, one hundred quintillion is as high as we go!");
+    if (number >= 1e+24) { 
+        return new Error("Sorry, number too big.");   
     } else {
         return(number);
     }
@@ -82,7 +64,7 @@ var spellItOut = function (number) {
         tempNums.push(arrayOfNums.splice(-3, 3));
         length = (length - 3);
     }
-    console.log("here's tempNums: "  + tempNums);  
+    // console.log("here's tempNums: "  + tempNums);  
     tempNumlength = tempNums.length;  
     //okay let's look at each chunk one by one    
     for(var i=0; i<tempNumlength; i++) {
@@ -92,7 +74,11 @@ var spellItOut = function (number) {
         //check if the middle digit is a 1, in which case it's a "teen" number
         if ((miniArray[1] === 1)) {
                 var teenNum = (miniArray[1]).toString() + (miniArray[0]).toString();
-                spelledNums.push(underTwenty(+teenNum));
+                if (i == 0) {
+                    spelledNums.push(underTwenty(+teenNum));
+                } else {
+                    spelledNums.push(underTwenty(+teenNum) + powers[i+1]);
+                }    
                 //push an empty element for every place
                 spelledNums.push(' ');
                 //now push the hundreds digit, if it's not undefined or 0
@@ -105,28 +91,25 @@ var spellItOut = function (number) {
         }
         // if it's not a 1 then
         else { 
-            ////********* work here -- the powers add doesn't work if it's temp[0]
-            if ((miniArray[0])){
+            if (miniArray[0] >= 0){
                 console.log("here's miniarray 0: " + miniArray[0]);
-                spelledNums.push(underTwenty(miniArray[0]) + powers[i+1]);
-                var ones = (underTwenty(miniArray[0]));
-            }
-            else {
-                spelledNums.push(' ' + powers[i+1]);
+                if (i == 0) {
+                    spelledNums.push(underTwenty(miniArray[0]));
+                } else {
+                    spelledNums.push(underTwenty(miniArray[0]) + powers[i+1]);
+                    console.log("here's " + i);
+                }
             }
             if ((miniArray[1]) !== undefined){
-                console.log("here's miniarray 1: " + miniArray[1]);
+                // console.log("here's miniarray 1: " + miniArray[1]);
                 spelledNums.push(underHundred(miniArray[1]));
-                console.log(underHundred(miniArray[1]));
-                var tens = (underHundred(miniArray[1]))
             } 
             else {
                 spelledNums.push(' ');
             } 
             if (miniArray[2]){
-                console.log("here's miniarray 2:" + miniArray[2]);
-                spelledNums.push(singleDigit(miniArray[2]) + ' hundred and');     
-                var hundreds = (singleDigit(miniArray[2]) + ' hundred and');     
+                // console.log("here's miniarray 2:" + miniArray[2]);
+                spelledNums.push(singleDigit(miniArray[2]) + ' hundred and');       
             }
             else {
                 spelledNums.push(' ');
@@ -135,8 +118,7 @@ var spellItOut = function (number) {
     }
     //put things back in the right order
     var spelledArray = spelledNums.reverse();
-    console.log(spelledArray);
-
+    // console.log(spelledArray);
     return(spelledArray);
 
 }
@@ -145,14 +127,14 @@ var spellItOut = function (number) {
 var phrasify = function(number) { 
     // console.log("here is the input: " + number);
     function isNotEmpty(element) {
-      return element !== "";
+      return element !== " ";
     }
     var phrasifiedNums = number.filter(isNotEmpty);
     // console.log("here's the array: " + phrasifiedNums);
     var numPhrase = phrasifiedNums.join(" ");
     var noSpaces = numPhrase.replace(/  /, " ");
     var fixHyphens = noSpaces.replace(/- /gi, "-");
-    var fixTerminalHyphens = fixHyphens.replace(/-$/gi, "");
+    var fixTerminalHyphens = fixHyphens.replace(/- /gi, " ");
     var extraneousAnds = fixTerminalHyphens.replace(/and$/, "");
     var finalPhrase = extraneousAnds;
     return finalPhrase;
