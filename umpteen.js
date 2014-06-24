@@ -33,17 +33,20 @@ var singleDigit = function(number) {
 
 //turn number into an array
 var arrayify = function(number) {
+    console.log("here's the " + number);
+    console.log(number + " ");
     var stringNum = number.toString();
+    console.log("here's the string " + stringNum);
     var arrayOfNums = stringNum.split("");
     var length = arrayOfNums.length;
     for(var i=0; i<length; i++) { arrayOfNums[i] = +arrayOfNums[i]; }
     return arrayOfNums;
 }
 
-// sextillion is as high as we go
+// using bignumber.js
 var checkLength = function(number) {
-    if (number >= 1e+24) { 
-        return new Error("Sorry, number too big.");   
+    if (number >= 9007199254740992) { 
+        return new Error("Sorry, number too big. Blame Javascript!");   
     } else {
         return(number);
     }

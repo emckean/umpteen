@@ -3,15 +3,21 @@ var assert = require('assert'),
 	umpteen = require('../umpteen.js');
 
 	describe('checking length', function(){
-	  	var reallyLongNumber = 1000000000000000000000000;
-	  	it('should reject too-long numbers', function(){
-		  	var checkedNumber = umpteen.checkLength(reallyLongNumber);
+	  	// test the javascript big number thing
+	  	var number9007199254740993 = 9007199254740993;
+	  	it ('should reject numbers bigger than JS likes ', function(){
+	  		var checkedNumber = umpteen.checkLength(number9007199254740993);
 		  	checkedNumber.should.be.an.instanceof(Error);
 	  	})
-	  	var reallyTooLongNumber = 100000000000000000000000000;
-	  	it('should reject really too-long numbers', function(){
-		  	var checkedNumber = umpteen.checkLength(reallyTooLongNumber);
+	  	var number9007199254740992 = 9007199254740992;
+	  	it ('should reject numbers bigger than JS likes, take 2 ', function(){
+	  		var checkedNumber = umpteen.checkLength(number9007199254740992);
 		  	checkedNumber.should.be.an.instanceof(Error);
+	  	})
+	  	var numberShort = 1;
+	  	it ('should NOT reject numbers that are not bigger than JS likes ', function(){
+	  		var checkedNumber = umpteen.checkLength(numberShort);
+		  	checkedNumber.should.not.be.an.instanceof(Error);
 	  	})
 	  	//probably should make sure that shorter numbers are NOT instances of Error here
 	}
@@ -162,13 +168,12 @@ var assert = require('assert'),
 	  		console.log(umpteen.spellItOut(number1234567890123456));
 	  		should.deepEqual([" ", " ", "one quadrillion,", "two hundred and", "thirty-", "four trillion,", "five hundred and", "sixty-", "seven billion,", "eight hundred and", "ninety-", "  million,", "one hundred and", "twenty-", "three thousand,", "four hundred and", "fifty-", "six"], umpteen.spellItOut(number1234567890123456))
 	  	})	
-	  	//this test fails because of some mysterious javascript big number thing
-	  	// var number12345678901234567 = 12345678901234567;
-	  	// it ('should spell out a seventeen-digit number ', function(){
-	  	// 	console.log(umpteen.spellItOut(number12345678901234567));
-	  	// 	should.deepEqual([" ", " ", "twelve quadrillion,", "three hundred and", "forty-", "five trillion,", "six hundred and", "seventy-", "eight billion,", "nine hundred and", " ", "one million,", "two hundred and", "thirty-", "four thousand,", "five hundred and", "sixty-", "seven"], umpteen.spellItOut(number12345678901234567))
-	  	// })
-  		
+	  	// this test fails because of some mysterious javascript big number thing
+	  	var number12345678901234567 = "12345678901234567";
+	  	it ('should spell out a seventeen-digit number ', function(){
+	  		console.log(umpteen.spellItOut(number12345678901234567));
+	  		should.deepEqual([" ", " ", "twelve quadrillion,", "three hundred and", "forty-", "five trillion,", "six hundred and", "seventy-", "eight billion,", "nine hundred and", " ", "one million,", "two hundred and", "thirty-", "four thousand,", "five hundred and", "sixty-", "seven"], umpteen.spellItOut(number12345678901234567))
+	  	})
 	})
 	describe('making the number arrays into pretty strings', function(){
 	  	var NumArray123 = ["one hundred and", "twenty-", "three"];
