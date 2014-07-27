@@ -5,21 +5,53 @@ var oneToNineteen = [' ', 'one', 'two', 'three', 'four', 'five', 'six', 'seven',
     powers = ['', 'hundred', ' thousand,', ' million,', ' billion,', ' trillion,', ' quadrillion,', ' quintillion,', ' sextillion,'];
 
 // we don't mess with no decimals
-var noDecimals = function(number){
-    if (Math.floor(number) === 0) { 
-        return new Error("Sorry, number too small.");   
-    } else {
-        return Math.floor(number);
+
+var umpteenNumber = function(number) {
+    return {
+       myNumber : this.number,
+        onlyDigits :  function(myNumber){    
+            var exp = /[^\d]/ig;
+            myNumber = myNumber.replace(exp,"");
+            console.log(myNumber);
+            return myNumber;
+        },
+        noDecimals : function(myNumber){
+            if (Math.floor(myNumber) === 0) { 
+                console.log(myNumber);
+                throw new Error("Sorry, number too small.");
+                // console.log(typeOf(err));
+                // throw err;  
+            } else {
+                myNumber = Math.floor(myNumber);
+                return myNumber;
+            }
+        }
     }
-}
+    
 
+    
 // only digits 0-9 please
-var onlyDigits = function(number){    
-    var exp = /[^\d]/ig;
-    var justDigits = number.replace(exp,"");
-    return justDigits;
+//     UmpteenNumber.prototype.onlyDigits = function(number){    
+//     var exp = /[^\d]/ig;
+//     this.number = number.replace(exp,"");
+//     console.log(this);
+//     return this.number;
+// }
 }
 
+// UmpteenNumber.prototype.noDecimals = function(number){
+//     if (Math.floor(number) === 0) { 
+//         this.number = ["Error", "Sorry, number too small."];   
+//     } else {
+//         this.number = Math.floor(number);
+//     }
+//     console.log(this.number);
+//     return this.number;
+// }
+
+
+
+// here's the little functions that pull from the arrays of numbers
 var underTwenty = function(number) {
     return oneToNineteen[number];
 }
@@ -33,17 +65,17 @@ var singleDigit = function(number) {
 
 //turn number into an array
 var arrayify = function(number) {
-    console.log("here's the " + number);
-    console.log(number + " ");
+    // console.log("here's the " + number);
+    // console.log(number + " ");
     var stringNum = number.toString();
-    console.log("here's the string " + stringNum);
+    // console.log("here's the string " + stringNum);
     var arrayOfNums = stringNum.split("");
     var length = arrayOfNums.length;
     for(var i=0; i<length; i++) { arrayOfNums[i] = +arrayOfNums[i]; }
     return arrayOfNums;
 }
 
-// using bignumber.js
+// some numbers are just too big for javascript
 var checkLength = function(number) {
     if (number >= 9007199254740992) { 
         return new Error("Sorry, number too big. Blame Javascript!");   
@@ -56,6 +88,7 @@ var spellItOut = function (number) {
     //let's make some variables
     //what we return
     var spelledNums = [];
+    var spelledArray = [];
     //temporary array to count backwards by threes
     var tempNums = [];
     //create an array from the number string
@@ -73,7 +106,7 @@ var spellItOut = function (number) {
     for(var i=0; i<tempNumlength; i++) {
         //reverse it, because that way you know the relevant teen digit is always array[1]
         var miniArray = tempNums[i].reverse();
-        console.log(miniArray);
+        // console.log(miniArray);
         //check if the middle digit is a 1, in which case it's a "teen" number
         if ((miniArray[1] === 1)) {
                 var teenNum = (miniArray[1]).toString() + (miniArray[0]).toString();
@@ -95,12 +128,12 @@ var spellItOut = function (number) {
         // if it's not a 1 then
         else { 
             if (miniArray[0] >= 0){
-                console.log("here's miniarray 0: " + miniArray[0]);
+                // console.log("here's miniarray 0: " + miniArray[0]);
                 if (i == 0) {
                     spelledNums.push(underTwenty(miniArray[0]));
                 } else {
                     spelledNums.push(underTwenty(miniArray[0]) + powers[i+1]);
-                    console.log("here's " + i);
+                    // console.log("here's " + i);
                 }
             }
             if ((miniArray[1]) !== undefined){
@@ -121,21 +154,26 @@ var spellItOut = function (number) {
     }
     //put things back in the right order
     var spelledArray = spelledNums.reverse();
-    // console.log(spelledArray);
+    // console.log("here's my spelled Array " + spelledArray);
     return(spelledArray);
 
 }
 
 
-var phrasify = function(number) { 
-    // console.log("here is the input: " + number);
+var phrasify = function(myNumber) {    
     function isNotEmpty(element) {
       return element !== " ";
     }
-    var phrasifiedNums = number.filter(isNotEmpty);
+    var arrayNum = [];
+    var arrayNum = myNumber;
+    // console.log("here's the input to phrasify: " + myNumber)
+    // console.log(typeof(myNumber));
+    // var phrasifiedNums = Number(itsANumber).filter(isNotEmpty);
+
+
     // console.log("here's the array: " + phrasifiedNums);
-    var numPhrase = phrasifiedNums.join(" ");
-    var noSpaces = numPhrase.replace(/  /, " ");
+    // var numPhrase = itsANumber.join(" ");
+    var noSpaces = myNumber.replace(/  /, " ");
     var fixHyphens = noSpaces.replace(/- /gi, "-");
     var fixTerminalHyphens = fixHyphens.replace(/- /gi, " ");
     var extraneousAnds = fixTerminalHyphens.replace(/and$/, "");
@@ -143,36 +181,51 @@ var phrasify = function(number) {
     return finalPhrase;
 }
 
-var finalFunction = function(number) {
-    if (number === 0) {
-        return "zero";
+
+var checkZero = function(number) {
+    // console.log(number);
+    newNumber = parseInt(number, 10);
+    // console.log(newNumber);
+    if (newNumber === 0) {
+        //returning array here 
+        return ["zero"]; 
     }
-    // var plainNumber = noDecimals(number);
-    // console.log("here's the plainNumber " + plainNumber);
-    var digitsOnlyNumber = onlyDigits(number);
-    // console.log(digitsOnlyNumber);
-    var myNumber = checkLength(digitsOnlyNumber);
-    console.log(typeof(myNumber));
+    else {
+        //returning the original number 
+        return number;
+    }
+}
+
+var finalFunction = function(number) {
+    var numObj = new UmpteenNumber(number);
+    var spelledNum = [];
+    var resultPhrase = {};
+    // console.log("here's the number passed in " + number);
+    // console.log(typeof(number));
+    
+    var digitsOnlyNumber = UmpteenNumber.onlyDigits(number);
+    var myNumber = checkLength(UmpteenNumber.digitsOnlyNumber);
     if (typeof myNumber == 'object') {
-        console.log("here's myNumber: " + myNumber);
+        // console.log("here's myNumber: " + myNumber);
+        resultPhrase.myNumber = myNumber;
         return(myNumber);
     }
     else {
-        console.log("here's myNumber again: " + myNumber);
+        // console.log("here's myNumber again: " + myNumber);
         var spelledNum = spellItOut(myNumber);
-        console.log("here's the spelledNum: " + spelledNum);
-        var finalResult = phrasify(spelledNum);
-        return finalResult;
+        // console.log("here's the spelledNum: " + spelledNum);
+        resultPhrase.myNumber = spelledNum;
+        // console.log(resultPhrase);
+        return spelledNum;
 }
 }
 
 if (typeof module !== 'undefined') {
     module.exports = {
+        umpteenNumber : umpteenNumber,
         arrayify : arrayify,
-        // checkZero : checkZero,
+        checkZero : checkZero,
         underTwenty: underTwenty,
-        noDecimals: noDecimals,
-        onlyDigits: onlyDigits,
         checkLength: checkLength,
         singleDigit: singleDigit,
         underHundred: underHundred,

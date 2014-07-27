@@ -10,6 +10,9 @@ to-do:
 * handle negative numbers?
 * deal with zero case
 * make tests run constantly
+* check for string of all zeros
+* what about leading zeros?
+* don't forget to take out ALL THE CONSOLE.LOGS :)
 
 Things to remember:
 -----------------------
@@ -20,7 +23,7 @@ https://medium.com/html5-css3/7c80a4b731f8
 
 Checklist:
 ------------------------
-* zero
+* zero, leading zeros
 * single numbers 1-9
 * 10, 11, 12
 * teens
@@ -36,18 +39,31 @@ Checklist:
 * for random testing, RAND a number between 0 and one trillion and log output, just for eyeball verify
 * test in spellitout that number is an array, then do the joinyreplacy bits
 
-Flow
+Flow (arrayify : arrayify,
+        // checkZero : checkZero,
+        underTwenty: underTwenty,
+        noDecimals: noDecimals,
+        onlyDigits: onlyDigits,
+        checkLength: checkLength,
+        singleDigit: singleDigit,
+        underHundred: underHundred,
+        spellItOut: spellItOut,
+        phrasify: phrasify,
+        finalFunction : finalFunction)
 ---------------------------
+-- pre-check (checkZero; checkLength; onlyDigits; noDecimals;)
+-- when do I want integers and when strings?
 √ check to make sure all digits
 √ then delete decimals
 √ then check length
 -- what about a case statement that checks the tempnum[i]?
 -- fix plain zero with special case
--- then create array
--- create spelled version
--- remove empty array elements
+√ then create array (arrayify)
+√ create spelled version (spellItOut)
+√ remove empty array elements (phrasify)
 -- fix "one thousand, zero hundred and"
 -- figure out Object.prototype.toString
+-- final wrapper function to chain everything (finalFunction => needs rename)
 
 Possibilities
 ------------------------------
