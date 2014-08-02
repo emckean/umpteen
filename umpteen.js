@@ -12,44 +12,39 @@ var umpteenNumber = function(number) {
         onlyDigits :  function(myNumber){    
             var exp = /[^\d]/ig;
             myNumber = myNumber.replace(exp,"");
-            console.log(myNumber);
+            // console.log(myNumber);
             return myNumber;
         },
         noDecimals : function(myNumber){
             if (Math.floor(myNumber) === 0) { 
-                console.log(myNumber);
-                throw new Error("Sorry, number too small.");
+                // console.log(myNumber);
+                return new Error("Sorry, number too small.");
                 // console.log(typeOf(err));
                 // throw err;  
             } else {
                 myNumber = Math.floor(myNumber);
                 return myNumber;
             }
+        },
+        noDecimalsString : function(myNumber){
+            myNumber = myNumber.split(".", 1);
+            return myNumber[0];
         }
     }
-    
-
-    
-// only digits 0-9 please
-//     UmpteenNumber.prototype.onlyDigits = function(number){    
-//     var exp = /[^\d]/ig;
-//     this.number = number.replace(exp,"");
-//     console.log(this);
-//     return this.number;
-// }
 }
 
-// UmpteenNumber.prototype.noDecimals = function(number){
-//     if (Math.floor(number) === 0) { 
-//         this.number = ["Error", "Sorry, number too small."];   
-//     } else {
-//         this.number = Math.floor(number);
-//     }
-//     console.log(this.number);
-//     return this.number;
-// }
+// some numbers are just too big for javascript
+var checkTypeAndLength = function(number) {
+    if ((typeof (number) == 'number') && number >= 9007199254740992) { 
+        return new Error("Sorry, number too big. Blame Javascript!");   
+    } else if (typeof (number) == 'number'){
+        return (umpteenNumber().noDecimals(number));
+    } else if (typeof (number) == 'string') {
+        var tempNum = umpteenNumber().noDecimalsString(number);
+        return(umpteenNumber().onlyDigits(tempNum));
+    }
 
-
+}
 
 // here's the little functions that pull from the arrays of numbers
 var underTwenty = function(number) {
@@ -75,14 +70,7 @@ var arrayify = function(number) {
     return arrayOfNums;
 }
 
-// some numbers are just too big for javascript
-var checkLength = function(number) {
-    if (number >= 9007199254740992) { 
-        return new Error("Sorry, number too big. Blame Javascript!");   
-    } else {
-        return(number);
-    }
-}
+
 
 var spellItOut = function (number) {
     //let's make some variables
@@ -166,18 +154,19 @@ var phrasify = function(myNumber) {
     }
     var arrayNum = [];
     var arrayNum = myNumber;
-    // console.log("here's the input to phrasify: " + myNumber)
-    // console.log(typeof(myNumber));
-    // var phrasifiedNums = Number(itsANumber).filter(isNotEmpty);
+    console.log("here's the input to phrasify: " + myNumber)
+    console.log(typeof(myNumber));
+    var phrasifiedNums = arrayNum.filter(isNotEmpty);
 
 
-    // console.log("here's the array: " + phrasifiedNums);
-    // var numPhrase = itsANumber.join(" ");
-    var noSpaces = myNumber.replace(/  /, " ");
+    console.log("here's the array: " + phrasifiedNums);
+    var numPhrase = phrasifiedNums.join(" ");
+    var noSpaces = numPhrase.replace(/  /, " ");
     var fixHyphens = noSpaces.replace(/- /gi, "-");
     var fixTerminalHyphens = fixHyphens.replace(/- /gi, " ");
     var extraneousAnds = fixTerminalHyphens.replace(/and$/, "");
     var finalPhrase = extraneousAnds;
+    console.log(finalPhrase);
     return finalPhrase;
 }
 
@@ -217,7 +206,7 @@ var finalFunction = function(number) {
         resultPhrase.myNumber = spelledNum;
         // console.log(resultPhrase);
         return spelledNum;
-}
+    }
 }
 
 if (typeof module !== 'undefined') {
@@ -226,7 +215,7 @@ if (typeof module !== 'undefined') {
         arrayify : arrayify,
         checkZero : checkZero,
         underTwenty: underTwenty,
-        checkLength: checkLength,
+        checkTypeAndLength: checkTypeAndLength,
         singleDigit: singleDigit,
         underHundred: underHundred,
         spellItOut: spellItOut,

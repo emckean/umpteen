@@ -6,46 +6,54 @@ var assert = require('assert'),
 	  	// test the javascript big number thing
 	  	var number9007199254740993 = 9007199254740993;
 	  	it ('should reject numbers bigger than JS likes ', function(){
-	  		var checkedNumber = umpteen.checkLength(number9007199254740993);
+	  		var checkedNumber = umpteen.checkTypeAndLength(number9007199254740993);
 		  	checkedNumber.should.be.an.instanceof(Error);
+	  	})
+	  	var number9007199254740993_string = "9007199254740993";
+	  	it ('should accept strings that look like numbers bigger than JS likes ', function(){
+		  	should.equal("9007199254740993",umpteen.checkTypeAndLength(number9007199254740993_string));
+	  	})
+	  	var number9007199254740993_string_digits = "90*((*&(*$%07199254740993.99";
+	  	it ('should accept strings that look like numbers bigger than JS likes & that have weird chars', function(){
+		  	should.equal("9007199254740993",umpteen.checkTypeAndLength(number9007199254740993_string_digits));
 	  	})
 	  	var number9007199254740992 = 9007199254740992;
 	  	it ('should reject numbers bigger than JS likes, take 2 ', function(){
-	  		var checkedNumber = umpteen.checkLength(number9007199254740992);
+	  		var checkedNumber = umpteen.checkTypeAndLength(number9007199254740992);
 		  	checkedNumber.should.be.an.instanceof(Error);
 	  	})
 	  	var numberShort = 1;
 	  	it ('should NOT reject numbers that are not bigger than JS likes ', function(){
-	  		var checkedNumber = umpteen.checkLength(numberShort);
+	  		var checkedNumber = umpteen.checkTypeAndLength(numberShort);
 		  	checkedNumber.should.not.be.an.instanceof(Error);
 	  	})
 	  	//probably should make sure that shorter numbers are NOT instances of Error here
-	}
-		)
+	})
 	describe('remove decimals', function(){
-		var numberDecimal1 = new umpteen.umpteenNumber(3.14);
-	    it('should return a simple number for a decimal', function(){
+	  it('should return a simple number for a decimal', function(){
 	      should.equal(3, umpteen.umpteenNumber().noDecimals(3.14));
 		})
-	    it('should return an error if only decimals', function(){
-	    	console.log("here is the return" + umpteen.umpteenNumber().noDecimals(.14));
-	    	var LessThanZero = umpteen.umpteenNumber().noDecimals(.14);
-	    	console.log(LessThanZero);
-		    LessThanZero.should.be.an.instanceof(Error);
+	  it('should return a simple number for a string decimal', function(){
+	      should.equal(3, umpteen.umpteenNumber().noDecimalsString("3.14"));
 		})
-
+	  it('should return a simple number for a string double decimal', function(){
+	      should.equal(3, umpteen.umpteenNumber().noDecimalsString("3.14.16"));
+		})
+	  it('should return an error if only decimals', function(){
+		    umpteen.umpteenNumber().noDecimals(.14).should.be.an.instanceof(Error);
+		})
 	})
 	describe('remove spaces', function(){
-	    var numberSpaces = '3 3';
-	    it('should return a number without internal spaces', function(){
+	  var numberSpaces = '3 3';
+	  it('should return a number without internal spaces', function(){
 	      should.equal(33, umpteen.umpteenNumber().onlyDigits(numberSpaces));
 		})
 		var leadingNumberSpaces = ' 33';
-	    it('should return a number without leading spaces', function(){
+	  it('should return a number without leading spaces', function(){
 	      should.equal(33, umpteen.umpteenNumber().onlyDigits(leadingNumberSpaces));
 		})
 		var trailingNumberSpaces = '33 ';
-	    it('should return a number without trailing spaces', function(){
+	  it('should return a number without trailing spaces', function(){
 	      should.equal(33, umpteen.umpteenNumber().onlyDigits(trailingNumberSpaces));
 		})
 	})
@@ -205,8 +213,4 @@ var assert = require('assert'),
 	  		console.log(umpteen.phrasify(NumArray1234567890123456));	
 		  	should.equal("one quadrillion, two hundred and thirty-four trillion, five hundred and sixty-seven billion, eight hundred and ninety million, one hundred and twenty-three thousand, four hundred and fifty-six", umpteen.phrasify(NumArray1234567890123456));
 	  	})
-
-	}
-		)
-
-
+	})

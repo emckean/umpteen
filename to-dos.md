@@ -4,15 +4,22 @@ to-do:
 * test that shorter numbers are not instances of error 
 * figure out the >17 digit thing
 * use https://www.npmjs.org/package/big-integer to deal with numbers >1e+20 (toJSNumber())
-* check for >1 decimal point
-* check for non-digit, non-comma, non-decimal point characters
-* strip leading and trailing spaces
+<!-- * check for >1 decimal point -->
+<!-- * check for non-digit, non-comma, non-decimal point characters -->
+<!-- * strip leading and trailing spaces -->
 * handle negative numbers?
 * deal with zero case
 * make tests run constantly
 * check for string of all zeros
-* what about leading zeros?
+<!-- * what about leading zeros? -->
 * don't forget to take out ALL THE CONSOLE.LOGS :)
+* for super-big numbers, treat as string (regex out any decimals, then arrayify
+<!-- *fix 9007199254740993.77888 -->
+
+For the display:
+--------------------------
+*fix regex to grab the right route
+*better error handling
 
 Things to remember:
 -----------------------
