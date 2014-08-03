@@ -75,17 +75,26 @@ var assert = require('assert'),
 	})
 	describe('hey, check for zeros!', function(){
 		var testNumber0 = 0;
-		it ('should return an array of just the word zero for 0', function(){
+		it ('should return an array of ["zero"] for number 0', function(){
 	  		should.deepEqual(["zero"], umpteen.checkZero(testNumber0))
 	  	})
 		var testNumberNot0 = 3;
 		it ('should return the number for non-0 numbers', function(){
 	  		should.deepEqual(3, umpteen.checkZero(testNumberNot0))
 	  	})
-	  	var testNumberLeading0 = "0003";
+	  var testNumberLeading0 = "0003";
 		it ('should remove any leading 0s for non-0 numbers', function(){
 	  		should.deepEqual(3, umpteen.checkZero(testNumberLeading0))
 	  	})	
+	  var testNumberLeadingAndTrailing0 = "00010";
+		it ('should remove any leading 0s for non-0 numbers', function(){
+	  		should.deepEqual(10, umpteen.checkZero(testNumberLeadingAndTrailing0))
+	  	})
+		var testString0 = "00";
+		it ('should return an array of just the word zero for string 0', function(){
+	  		should.deepEqual(["zero"], umpteen.checkZero(testString0))
+	  })
+
 	})
 	describe('number test cases', function(){
 		var testNumber0 = 0;
@@ -213,4 +222,14 @@ var assert = require('assert'),
 	  		console.log(umpteen.phrasify(NumArray1234567890123456));	
 		  	should.equal("one quadrillion, two hundred and thirty-four trillion, five hundred and sixty-seven billion, eight hundred and ninety million, one hundred and twenty-three thousand, four hundred and fifty-six", umpteen.phrasify(NumArray1234567890123456));
 	  	})
+	})
+	describe('testing final function', function(){
+		var testString0 = "00";
+		it ('should return an array of just the word zero for string 0', function(){
+	  		should.deepEqual(["zero"], umpteen.finalFunction(testString0))
+	  })
+	  var test42 = "42d.6.6";
+		it ('should return a clean number from a dirty string', function(){
+	  		should.deepEqual("forty-two", umpteen.finalFunction(test42))
+	  })
 	})
