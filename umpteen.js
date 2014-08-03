@@ -224,7 +224,7 @@ var finalFunction = function(number) {
         return (cleanNumber);
     }
     if (checkZero(cleanNumber) == 'zero') {
-        return (['zero']);
+        return ('zero');
     } else {
         var noZeros = checkZero(cleanNumber);
         console.log("this number should have no leading " + noZeros);
