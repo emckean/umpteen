@@ -4,16 +4,36 @@ var oneToNineteen = [' ', 'one', 'two', 'three', 'four', 'five', 'six', 'seven',
     ones = [' ', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
     powers = ['', 'hundred', ' thousand,', ' million,', ' billion,', ' trillion,', ' quadrillion,', ' quintillion,', ' sextillion,'];
 
-// we don't mess with no decimals
+// here's the little functions that pull from the arrays of numbers
+var underTwenty = function(number) {
+    return oneToNineteen[number];
+}
+var underHundred = function(number) {
+    return tens[number];
+}
+var singleDigit = function(number) {
+    return ones[number];
+}   
 
+// here's the object with functions that clean the number of non-digits and decimals
+// could totally do this with standalone functions, just wanted to try this syntax
 var umpteenNumber = function(number) {
     return {
        myNumber : this.number,
-        onlyDigits :  function(myNumber){    
-            var exp = /[^\d]/ig;
-            myNumber = myNumber.replace(exp,"");
-            // console.log(myNumber);
-            return myNumber;
+        onlyDigits :  function(myNumber){  
+            if (typeof myNumber === 'string') {
+                var exp = /[^\d]/ig;
+                myNumber = myNumber.replace(exp,"");
+            };
+            if (myNumber !== "") {
+                //stopped here -- why is .00009 not working
+                console.log("here's the digits-only: " + myNumber);
+                return myNumber;
+            } else {
+                console.log("here's the empty myNumber " + myNumber);
+                return new Error("Sorry, please enter at least one digit.");
+            };
+
         },
         noDecimals : function(myNumber){
             if (Math.floor(myNumber) === 0) { 
@@ -26,44 +46,56 @@ var umpteenNumber = function(number) {
                 return myNumber;
             }
         },
+        //stopped here
         noDecimalsString : function(myNumber){
             myNumber = myNumber.split(".", 1);
-            return myNumber[0];
+            if (myNumber[0] !== "") {
+                //stopped here -- why is .00009 not working
+                console.log("here's the no decimal: " + myNumber[0]);
+                return myNumber[0];
+            } else {
+                console.log(myNumber);
+                return new Error("Sorry, number too small.");
+            };
+            
         }
     }
 }
 
-// some numbers are just too big for javascript
-var checkTypeAndLength = function(number) {
-    if ((typeof (number) == 'number') && number >= 9007199254740992) { 
+// this function does the checking for non-digits and too-big numbers
+// this totally needs some refactoring, probably a case statement or split it out into separate functions
+var checkTypeAndLength = function(input) {
+    console.log("here's the length of the input " + input.length);
+    if ((typeof (input) == 'number') && input >= 9007199254740992) { 
         return new Error("Sorry, number too big. Blame Javascript!");   
-    } else if (typeof (number) == 'number'){
-        return (umpteenNumber().noDecimals(number));
-    } else if (typeof (number) == 'string') {
-        var tempNum = umpteenNumber().noDecimalsString(number);
-        return(umpteenNumber().onlyDigits(tempNum));
+    } else if (typeof (input) == 'number'){
+        //probably need to check this here for numbers with nothing to the left of the decimal point
+        return (umpteenNumber().noDecimals(input).toString);
+    } else if (typeof (input) == 'string') {
+        var tempNum = umpteenNumber().noDecimalsString(input);
+        console.log("here's the tempNum: " + tempNum);
+        if (tempNum instanceof Error) {
+            return (tempNum);
+        } else if ((umpteenNumber().onlyDigits(tempNum).length > 16)) {
+            return new Error("Sorry, I can't count that high!")
+        } else {
+            return(umpteenNumber().onlyDigits(tempNum));
+            // return new Error("Sorry, I can't count that high!");
+        } 
+        }
     }
 
-}
 
-// here's the little functions that pull from the arrays of numbers
-var underTwenty = function(number) {
-    return oneToNineteen[number];
-}
-
-var underHundred = function(number) {
-    return tens[number];
-}
-var singleDigit = function(number) {
-    return ones[number];
-}       
-
+    
 //turn number into an array
-var arrayify = function(number) {
-    // console.log("here's the " + number);
-    // console.log(number + " ");
-    var stringNum = number.toString();
-    // console.log("here's the string " + stringNum);
+var arrayify = function(input) {
+    if (typeof (input) == 'string'){
+        var stringNum = input;
+    }
+    else {
+        var stringNum = input.toString();
+        console.log(typeof stringNum);
+    }
     var arrayOfNums = stringNum.split("");
     var length = arrayOfNums.length;
     for(var i=0; i<length; i++) { arrayOfNums[i] = +arrayOfNums[i]; }
@@ -71,7 +103,7 @@ var arrayify = function(number) {
 }
 
 
-
+// the main function that creates the array of words from number input
 var spellItOut = function (number) {
     //let's make some variables
     //what we return
@@ -147,66 +179,63 @@ var spellItOut = function (number) {
 
 }
 
-
+//take the spellItOut array, and clean up extraneous elements
 var phrasify = function(myNumber) {    
     function isNotEmpty(element) {
       return element !== " ";
     }
     var arrayNum = [];
     var arrayNum = myNumber;
-    console.log("here's the input to phrasify: " + myNumber)
-    console.log(typeof(myNumber));
+    //make sure it's not empty
     var phrasifiedNums = arrayNum.filter(isNotEmpty);
-
-
-    console.log("here's the array: " + phrasifiedNums);
+    // turn it into one string
     var numPhrase = phrasifiedNums.join(" ");
+    //take out spaces
     var noSpaces = numPhrase.replace(/  /, " ");
+    //clean up hyphens
     var fixHyphens = noSpaces.replace(/- /gi, "-");
+    //remove unnecessary terminal hyphens
     var fixTerminalHyphens = fixHyphens.replace(/- /gi, " ");
+    //take out unnecessary ands
     var extraneousAnds = fixTerminalHyphens.replace(/and$/, "");
+    // returning new variable just in case I think of anything else to clean
     var finalPhrase = extraneousAnds;
-    console.log(finalPhrase);
     return finalPhrase;
 }
 
-
+// let's treat zero as a special case
 var checkZero = function(number) {
-    // console.log(number);
     newNumber = parseInt(number, 10);
-    // console.log(newNumber);
     if (newNumber === 0) {
         //returning array here 
-        return ["zero"]; 
+        return ['zero']; 
     }
     else {
         //returning the original number 
-        return number;
+        console.log(newNumber);
+        return newNumber;
     }
 }
 
 var finalFunction = function(number) {
-    var numObj = new UmpteenNumber(number);
-    var spelledNum = [];
-    var resultPhrase = {};
-    // console.log("here's the number passed in " + number);
-    // console.log(typeof(number));
+    var cleanNumber = checkTypeAndLength(number);
+    console.log("here's the type : " + typeof cleanNumber);
+    if (cleanNumber instanceof Error) {
+        return (cleanNumber);
+    }
+    if (checkZero(cleanNumber) == 'zero') {
+        return (['zero']);
+    } else {
+        var noZeros = checkZero(cleanNumber);
+        console.log("this number should have no leading " + noZeros);
+        console.log(cleanNumber);
+        wordArray = spellItOut(noZeros);
+        console.log(wordArray);
+        finalOutput = phrasify(wordArray);
+        console.log(finalOutput);
+        return (finalOutput);
+    }
     
-    var digitsOnlyNumber = UmpteenNumber.onlyDigits(number);
-    var myNumber = checkLength(UmpteenNumber.digitsOnlyNumber);
-    if (typeof myNumber == 'object') {
-        // console.log("here's myNumber: " + myNumber);
-        resultPhrase.myNumber = myNumber;
-        return(myNumber);
-    }
-    else {
-        // console.log("here's myNumber again: " + myNumber);
-        var spelledNum = spellItOut(myNumber);
-        // console.log("here's the spelledNum: " + spelledNum);
-        resultPhrase.myNumber = spelledNum;
-        // console.log(resultPhrase);
-        return spelledNum;
-    }
 }
 
 if (typeof module !== 'undefined') {
