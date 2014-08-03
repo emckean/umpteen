@@ -226,7 +226,7 @@ var assert = require('assert'),
 	describe('testing final function', function(){
 		var testString0 = "00";
 		it ('should return an array of just the word zero for string 0', function(){
-	  		should.deepEqual(["zero"], umpteen.finalFunction(testString0))
+	  		should.deepEqual("zero", umpteen.finalFunction(testString0))
 	  })
 	  var test42 = "42d.6.6";
 		it ('should return a clean number from a dirty string', function(){
