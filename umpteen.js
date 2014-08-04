@@ -122,7 +122,7 @@ var spellItOut = function (number) {
         myLength = (myLength - 3);
     }
     // console.log("here's tempNums: "  + tempNums);  
-    tempNumlength = tempNums.length;  
+    var tempNumlength = tempNums.length;  
     //okay let's look at each chunk one by one    
     for(var i=0; i<tempNumlength; i++) {
         //reverse it, because that way you know the relevant teen digit is always array[1]
@@ -131,7 +131,7 @@ var spellItOut = function (number) {
         //check if the middle digit is a 1, in which case it's a "teen" number
         if ((miniArray[1] === 1)) {
                 var teenNum = (miniArray[1]).toString() + (miniArray[0]).toString();
-                if (i == 0) {
+                if (i === 0) {
                     spelledNums.push(underTwenty(+teenNum));
                 } else {
                     spelledNums.push(underTwenty(+teenNum) + powers[i+1]);
@@ -150,7 +150,7 @@ var spellItOut = function (number) {
         else { 
             if (miniArray[0] >= 0){
                 // console.log("here's miniarray 0: " + miniArray[0]);
-                if (i == 0) {
+                if (i === 0) {
                     spelledNums.push(underTwenty(miniArray[0]));
                 } else {
                     spelledNums.push(underTwenty(miniArray[0]) + powers[i+1]);
@@ -174,7 +174,7 @@ var spellItOut = function (number) {
         }
     }
     //put things back in the right order
-    var spelledArray = spelledNums.reverse();
+    spelledArray = spelledNums.reverse();
     // console.log("here's my spelled Array " + spelledArray);
     return(spelledArray);
 
@@ -186,7 +186,7 @@ var phrasify = function(myNumber) {
       return element !== " ";
     }
     var arrayNum = [];
-    var arrayNum = myNumber;
+    arrayNum = myNumber;
     //make sure it's not empty
     var phrasifiedNums = arrayNum.filter(isNotEmpty);
     // turn it into one string
@@ -206,7 +206,7 @@ var phrasify = function(myNumber) {
 
 // let's treat zero as a special case
 var checkZero = function(number) {
-    newNumber = parseInt(number, 10);
+    var newNumber = parseInt(number, 10);
     if (newNumber === 0) {
         //returning array here 
         return ['zero']; 
@@ -230,9 +230,9 @@ var finalFunction = function(number) {
         var noZeros = checkZero(cleanNumber);
         console.log("this number should have no leading " + noZeros);
         console.log(cleanNumber);
-        wordArray = spellItOut(noZeros);
+        var wordArray = spellItOut(noZeros);
         console.log(wordArray);
-        finalOutput = phrasify(wordArray);
+        var finalOutput = phrasify(wordArray);
         console.log(finalOutput);
         return (finalOutput);
     }
