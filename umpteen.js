@@ -1,30 +1,30 @@
 //here's the written-out numbers
 var oneToNineteen = [' ', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'],
-    tens = [' ', 'ten', 'twenty-', 'thirty-', 'forty-', 'fifty-', 'sixty-', 'seventy-', 'eighty-', 'ninety-'];
-    ones = [' ', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+    tens = [' ', 'ten', 'twenty-', 'thirty-', 'forty-', 'fifty-', 'sixty-', 'seventy-', 'eighty-', 'ninety-'],
+    ones = [' ', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'],
     powers = ['', 'hundred', ' thousand,', ' million,', ' billion,', ' trillion,', ' quadrillion,', ' quintillion,', ' sextillion,'];
 
 // here's the little functions that pull from the arrays of numbers
-var underTwenty = function(number) {
+var underTwenty = function (number) {
     return oneToNineteen[number];
 }
-var underHundred = function(number) {
+var underHundred = function (number) {
     return tens[number];
 }
-var singleDigit = function(number) {
+var singleDigit = function (number) {
     return ones[number];
 }   
 
 // here's the object with functions that clean the number of non-digits and decimals
 // could totally do this with standalone functions, just wanted to try this syntax
-var umpteenNumber = function(number) {
+var umpteenNumber = function (number) {
     return {
        myNumber : this.number,
         onlyDigits :  function(myNumber){  
             if (typeof myNumber === 'string') {
                 var exp = /[^\d]/ig;
                 myNumber = myNumber.replace(exp,"");
-            };
+            }
             if (myNumber !== "") {
                 //stopped here -- why is .00009 not working
                 console.log("here's the digits-only: " + myNumber);
@@ -32,10 +32,10 @@ var umpteenNumber = function(number) {
             } else {
                 console.log("here's the empty myNumber " + myNumber);
                 return new Error("Sorry, please enter at least one digit.");
-            };
+            }
 
         },
-        noDecimals : function(myNumber){
+        noDecimals : function (myNumber){
             if (Math.floor(myNumber) === 0) { 
                 // console.log(myNumber);
                 return new Error("Sorry, number too small.");
@@ -47,7 +47,7 @@ var umpteenNumber = function(number) {
             }
         },
         //stopped here
-        noDecimalsString : function(myNumber){
+        noDecimalsString : function (myNumber){
             myNumber = myNumber.split(".", 1);
             if (myNumber[0] !== "") {
                 //stopped here -- why is .00009 not working
@@ -56,7 +56,7 @@ var umpteenNumber = function(number) {
             } else {
                 console.log(myNumber);
                 return new Error("Sorry, number too small.");
-            };
+            }
             
         }
     }
@@ -64,7 +64,7 @@ var umpteenNumber = function(number) {
 
 // this function does the checking for non-digits and too-big numbers
 // this totally needs some refactoring, probably a case statement or split it out into separate functions
-var checkTypeAndLength = function(input) {
+var checkTypeAndLength = function (input) {
     console.log("here's the length of the input " + input.length);
     if ((typeof (input) == 'number') && input >= 9007199254740992) { 
         return new Error("Sorry, number too big. Blame Javascript!");   
@@ -89,11 +89,12 @@ var checkTypeAndLength = function(input) {
     
 //turn number into an array
 var arrayify = function(input) {
+    var stringNum;
     if (typeof (input) == 'string'){
-        var stringNum = input;
+        stringNum = input;
     }
     else {
-        var stringNum = input.toString();
+        stringNum = input.toString();
         console.log(typeof stringNum);
     }
     var arrayOfNums = stringNum.split("");
@@ -114,11 +115,11 @@ var spellItOut = function (number) {
     //create an array from the number string
     var arrayOfNums = arrayify(number);
     //get the length
-    length = arrayOfNums.length;
+    var myLength = arrayOfNums.length;
     // make an array of arrays, counting from the end of the number = 123,456 = [[4,5,6], [1,2,3]]
-    while (length > 0) {
+    while (myLength > 0) {
         tempNums.push(arrayOfNums.splice(-3, 3));
-        length = (length - 3);
+        myLength = (myLength - 3);
     }
     // console.log("here's tempNums: "  + tempNums);  
     tempNumlength = tempNums.length;  
