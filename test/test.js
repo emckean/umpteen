@@ -1,6 +1,7 @@
 var assert = require('assert'),
 	should = require('should'),
-	umpteen = require('../umpteen.js');
+	umpteen = require('../umpteen.js'),
+	blanket = require('blanket');
 
 	describe('checking length', function(){
 	  	// test the javascript big number thing
