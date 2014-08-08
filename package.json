@@ -27,15 +27,9 @@
   "scripts": {
     "test": "node_modules/.bin/mocha"
   },
-  "config": {
-    "blanket": {
-      "pattern": "umpteen.js"
-    }
-  },
   "devDependencies": {
     "mocha": "~1.16.2",
     "should": "~2.1.1",
-    "blanket": "^1.1.6",
     "istanbul": "^0.3.0",
     "coveralls": "^2.11.1"
   }
