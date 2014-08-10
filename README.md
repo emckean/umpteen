@@ -72,12 +72,26 @@ To test this module on the command line, try this:
   ```
   "seventy-seven"
   ```
+Dependencies?
+---------------------------
+Umpteen has no runtime dependencies. To run the tests, you'll need:
+
+* mocha
+* should
+
+For checking test coverage and getting that nice little badget at the top, I used:
+
+* istabul
+* coveralls
+
 
 Thanks and acknowledgements
 ===========================
 Umpteen was inspired by Landon Curt Noll's print-the-numbers perl script, which is way better and fuller-featured than this module. You should check it out: http://www.isthe.com/chongo/tech/math/number/number
 
 If you don't like this implementation, or you need to spell out numbers in French or Danish, try this module by jmosbech (https://github.com/jmosbech): https://www.npmjs.org/package/spell-it
+
+Thanks also to casualjim: https://github.com/casualjim for helping me figure out how to see my test coverage.
 
 License
 ========
