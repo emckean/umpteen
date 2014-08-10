@@ -27,6 +27,17 @@ var assert = require('assert'),
 				umpteen.checkTypeAndLength("12345678901234567").should.be.an.instanceof(Error);
 	  	})	  	
 	})
+	describe('checking for negativity', function(){
+	  it('should return the word "negative" if the number begins with -', function(){
+	      should.equal("negative ", umpteen.checkNegative("-99"));
+		})
+	  it('should not return the word "negative" if the number does not begin with -', function(){
+	      should.equal("", umpteen.checkNegative("99"));
+		})
+	  it('should not return the word "negative" if the number includes a -', function(){
+	      should.equal("", umpteen.checkNegative("9-9"));
+		})		
+	})
 	describe('remove decimals', function(){
 	  it('should return a simple number for a decimal', function(){
 	      should.equal(3, umpteen.umpteenNumber().noDecimals(3.14));
@@ -217,4 +228,8 @@ var assert = require('assert'),
 	  it ('should pass through an error from the cleannumber test', function(){
 	  	umpteen.finalFunction(".014").should.be.an.instanceof(Error);
 	  })
+	  it ('should return negative for a negative number', function(){
+	  	umpteen.finalFunction("-99").should.equal("negative ninety-nine");
+	  })
+
 	})

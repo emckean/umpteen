@@ -189,12 +189,26 @@ var checkZero = function(number) {
     }
 }
 
+// let's check for negative numbers
+var checkNegative = function(number) {
+    var negExpr = /^-/;
+    if (negExpr.test(number)) {
+        //returning array here 
+        return('negative '); 
+    }
+    else {
+        return('');
+    }
+}
+
 var finalFunction = function(number) {
     //clean input
     var cleanNumber = checkTypeAndLength(number);
     if (cleanNumber instanceof Error) {
         return (cleanNumber);
     }
+    //check for negative case
+    var negative = checkNegative(number);
     //check for zero special case
     if (checkZero(cleanNumber) == 'zero') {
         return ('zero');
@@ -204,7 +218,9 @@ var finalFunction = function(number) {
         //get the array of number words
         var wordArray = spellItOut(noZeros);
         //make it into a pretty phrase
-        var finalOutput = phrasify(wordArray);
+        var phrasedResult = phrasify(wordArray);
+        // add the output of the negative check above
+        var finalOutput = negative + phrasedResult;
         //return it
         return (finalOutput);
     }
@@ -216,6 +232,7 @@ if (typeof module !== 'undefined') {
         umpteenNumber : umpteenNumber,
         arrayify : arrayify,
         checkZero : checkZero,
+        checkNegative : checkNegative,
         underTwenty: underTwenty,
         checkTypeAndLength: checkTypeAndLength,
         singleDigit: singleDigit,
