@@ -63,10 +63,12 @@ To test this module on the command line, try this:
   console.log(spellIt.spellItOut(input));
   ```
 3. from the command line, type: 
+
   ```
   node spellItOut 77
   ```
 4. You should see this returned:
+
   ```
   "seventy-seven"
   ```
