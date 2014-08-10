@@ -6,11 +6,11 @@ What's Umpteen?
 
 Umpteen is a little npm module to help you spell out numbers in words.
 
-99 = ninety-nine
-99.99 = ninety-nine (umpteen discards anything after the decimal point)
-108 = one hundred and eight
-89,828,374,987 = eighty-nine billion, eight hundred and twenty-eight million, three hundred and seventy-four thousand, nine hundred and eighty-seven
-9,999,999,999,999,999 = nine quadrillion, nine hundred and ninety-nine trillion, nine hundred and ninety-nine billion, nine hundred and ninety-nine million, nine hundred and ninety-nine thousand, nine hundred and ninety-nine
+*99 = ninety-nine
+*99.99 = ninety-nine (umpteen discards anything after the decimal point)
+*108 = one hundred and eight
+*89,828,374,987 = eighty-nine billion, eight hundred and twenty-eight million, three hundred and seventy-four thousand, nine hundred and eighty-seven
+*9,999,999,999,999,999 = nine quadrillion, nine hundred and ninety-nine trillion, nine hundred and ninety-nine billion, nine hundred and ninety-nine million, nine hundred and ninety-nine thousand, nine hundred and ninety-nine
 
 Assumptions
 ------------
@@ -49,26 +49,24 @@ Command-Line?
 -------------
 To test this module on the command line, try this: 
 1. in a new directory, 
-```
-npm install umpteen 
-```
+  ```
+  npm install umpteen 
+  ```
 2. Create a spellItOut.js file with these lines: 
-```
-#!/usr/bin/env node
-
-var spellIt = require('umpteen');
-
-var input = process.argv[2];
-console.log(spellIt.spellItOut(input));
-```
+  ```
+  #!/usr/bin/env node
+  var spellIt = require('umpteen');
+  var input = process.argv[2];
+  console.log(spellIt.spellItOut(input));
+  ```
 3. from the command line, type: 
-```
-node spellItOut 77
-```
+  ```
+  node spellItOut 77
+  ```
 4. You should see this returned:
-```
-"seventy-seven"
-```
+  ```
+  "seventy-seven"
+  ```
 
 Thanks and acknowledgements
 ===========================
