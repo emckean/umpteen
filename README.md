@@ -72,7 +72,7 @@ To test this module on the command line, try this:
   ```
   "seventy-seven"
   ```
-  
+
 Dependencies?
 ---------------------------
 Umpteen has no runtime dependencies. To run the tests, you'll need:
@@ -80,7 +80,7 @@ Umpteen has no runtime dependencies. To run the tests, you'll need:
 * mocha
 * should
 
-For checking test coverage and getting that nice little badget at the top, I used:
+For checking test coverage and getting that nice little badge at the top, I used:
 
 * istabul
 * coveralls
@@ -92,7 +92,7 @@ Umpteen was inspired by Landon Curt Noll's print-the-numbers perl script, which 
 
 If you don't like this implementation, or you need to spell out numbers in French or Danish, try this module by jmosbech (https://github.com/jmosbech): https://www.npmjs.org/package/spell-it
 
-Thanks also to casualjim: https://github.com/casualjim for helping me figure out how to see my test coverage.
+Thanks also to casualjim (https://github.com/casualjim) for helping me figure out how to see my test coverage.
 
 License
 ========
