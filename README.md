@@ -6,7 +6,18 @@ What's Umpteen?
 
 Umpteen is a little npm module to help you spell out numbers in words.
 
-UMPTEEN IS CURRENTLY UNDER DEVELOPMENT. Still in the "write a bunch of tests" phase. I'm workin' on it as fast as I can. :-) 
+99 = ninety-nine
+99.99 = ninety-nine (umpteen discards anything after the decimal point)
+108 = one hundred and eight
+89,828,374,987 = eighty-nine billion, eight hundred and twenty-eight million, three hundred and seventy-four thousand, nine hundred and eighty-seven
+9,999,999,999,999,999 = nine quadrillion, nine hundred and ninety-nine trillion, nine hundred and ninety-nine billion, nine hundred and ninety-nine million, nine hundred and ninety-nine thousand, nine hundred and ninety-nine
+
+Assumptions
+------------
+
+Umpteen expects string input but will try to deal with number input as well, up to but not including 9007199254740992, which is the biggest number Javascript will nicely turn into a string. 
+
+Umpteen currently handles numbers up to 16 digits long.
 
 Why Umpteen?
 ===================
@@ -28,7 +39,11 @@ npm test
 A Note on Formatting
 --------------------
 Umpteen handles numbers written in US-style notation: 6,543.21. (Except that it throws away everything after the decimal point.)
-If you'd like to use Euro-style numbers, you can fork this & look for the comments, I've marked where the delimiters are shown. Please feel free to send me a pull request if you can figure out how to handle both instances nicely. 
+If you'd like to use Euro-style numbers, you can fork this & look for the comments, I've marked where the "." delimiter is shown (//HEY DELIMITERS HERE). Please feel free to send me a pull request if you can figure out how to handle both instances nicely. 
+
+A Note on Names for Numbers
+---------------------
+Umpteen uses the "short scale" for deciding when to start using the term "billion" (i.e., a billion is a thousand millions). More info here: http://en.wikipedia.org/wiki/Long_and_short_scales
 
 Command-Line?
 -------------
@@ -37,7 +52,7 @@ To test this module on the command line, try this:
 ```
 npm install umpteen 
 ```
-2. Create a SpellItOut.js file with these lines: 
+2. Create a spellItOut.js file with these lines: 
 ```
 #!/usr/bin/env node
 
@@ -48,7 +63,7 @@ console.log(spellIt.spellItOut(input));
 ```
 3. from the command line, type: 
 ```
-node SpellItOut 77
+node spellItOut 77
 ```
 4. You should see this returned:
 ```

@@ -40,6 +40,7 @@ var umpteenNumber = function (number) {
                 return myNumber;
             }
         },
+        //HEY DELIMITERS HERE
         noDecimalsString : function (myNumber){
             myNumber = myNumber.split(".", 1);
             if (myNumber[0] !== "") {
@@ -99,6 +100,7 @@ var spellItOut = function (number) {
     var tempNums = [];
     //create an array from the number string
     var arrayOfNums = arrayify(number);
+    console.log(arrayOfNums);
     //get the length
     var myLength = arrayOfNums.length;
     // make an array of arrays, counting from the end of the number = 123,456 = [[4,5,6], [1,2,3]]
@@ -185,7 +187,8 @@ var checkZero = function(number) {
     }
     else {
         //returning the original number 
-        return newNumber;
+        //remember that parseInt won't work nicely on numbers >9007199254740992, so return original number here
+        return number;
     }
 }
 
@@ -215,8 +218,10 @@ var finalFunction = function(number) {
     } else {
         //get the non-zero output of cleanNumber
         var noZeros = checkZero(cleanNumber);
+        console.log(noZeros);
         //get the array of number words
         var wordArray = spellItOut(noZeros);
+        console.log(wordArray);
         //make it into a pretty phrase
         var phrasedResult = phrasify(wordArray);
         // add the output of the negative check above

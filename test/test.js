@@ -219,11 +219,14 @@ var assert = require('assert'),
 	describe('testing final function', function(){
 		var testString0 = "00";
 		it ('should return an array of just the word zero for string 0', function(){
-	  		should.deepEqual("zero", umpteen.finalFunction(testString0))
+	  		should.deepEqual("zero", umpteen.finalFunction(testString0));
 	  })
 	  var test42 = "42d.6.6";
 		it ('should return a clean number from a dirty string', function(){
-	  		should.deepEqual("forty-two", umpteen.finalFunction(test42))
+ 	  		should.deepEqual("forty-two", umpteen.finalFunction(test42));
+		})
+	  it ('should handle the biggest possible number nicely', function(){
+	  		should.deepEqual("nine quadrillion, nine hundred and ninety-nine trillion, nine hundred and ninety-nine billion, nine hundred and ninety-nine million, nine hundred and ninety-nine thousand, nine hundred and ninety-nine", umpteen.finalFunction("9999999999999999"));
 	  })
 	  it ('should pass through an error from the cleannumber test', function(){
 	  	umpteen.finalFunction(".014").should.be.an.instanceof(Error);
