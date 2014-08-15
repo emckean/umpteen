@@ -1,7 +1,7 @@
 {
   "name": "umpteen",
   "description": "A helper for spelling out numbers in words.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/emckean/umpteen",
   "keywords": [
     "spell",
