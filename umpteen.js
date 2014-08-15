@@ -121,9 +121,15 @@ var spellItOut = function (number) {
                 } else {
                     spelledNums.push(underTwenty(+teenNum) + powers[i+1]);
                 }    
-                // push an empty element for every place just to keep things tidy
-                spelledNums.push(' ');
-                spelledNums.push(' ');
+                //push an empty element for every place
+                 spelledNums.push(' ');
+                 //now push the hundreds digit, if it's not undefined or 0
+                 if (miniArray[2]) {
+                     spelledNums.push(singleDigit(miniArray[2]) + ' hundred and');
+                 }
+                 else {
+                 spelledNums.push(' ');
+             }
         }
         // if it's not a 1 then
         else { 

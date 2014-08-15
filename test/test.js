@@ -128,7 +128,10 @@ var assert = require('assert'),
 	  	var number123 = 123;
 	  	it ('should return an array for a three-digit number', function(){
 	  		should.deepEqual(["one hundred and", "twenty-", "three"], umpteen.spellItOut(number123))
-	  	})	  
+	  	})	
+	  	it ('should return an array for a three-digit teen number', function(){
+	  	should.deepEqual(["five hundred and", " ", "twelve"], umpteen.spellItOut(512))
+	  	})  
 	  	var number204 = 204;
 	  	it ('should return an array for three-digit number with a middle zero', function(){
 	  		should.deepEqual(["two hundred and", " ", "four"], umpteen.spellItOut(number204))
