@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/emckean/umpteen.png?branch=master)](https://travis-ci.org/emckean/umpteen)
 [![Coverage Status](https://img.shields.io/coveralls/emckean/umpteen.svg)](https://coveralls.io/r/emckean/umpteen?branch=master)
-[![Package Quality](http://npm.packagequality.com/badge/umpteen.png)]
+
 
 What's Umpteen?
 ===================
@@ -111,3 +111,5 @@ The above copyright notice and this permission notice shall be included inall co
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+(http://npm.packagequality.com/badge/umpteen.png)
