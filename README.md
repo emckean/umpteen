@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/emckean/umpteen.png?branch=master)](https://travis-ci.org/emckean/umpteen)
 [![Coverage Status](https://img.shields.io/coveralls/emckean/umpteen.svg)](https://coveralls.io/r/emckean/umpteen?branch=master)
+[![Package Quality](<img src="http://npm.packagequality.com/badge/umpteen.png"/>)]
 
 What's Umpteen?
 ===================
