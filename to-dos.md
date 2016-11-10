@@ -5,6 +5,7 @@ Things I'd like to add
 ------------------------
 * handling decimals
 * handling numbers bigger than nine quadrillion, nine hundred and ninety-nine trillion, nine hundred and ninety-nine billion, nine hundred and ninety-nine million, nine hundred and ninety-nine thousand, nine hundred and ninety-nine (sixteen nines)
+* other stuff
 
 Test coverage for coveralls
 ----------------------------
